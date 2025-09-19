@@ -35,6 +35,7 @@ app.get("/messages", (req, res) => {
 
 // Get all chats
 app.get("/chats", (req, res) => {
+  console.log(res.data);
   res.json(readChats());
 });
 
