@@ -1,0 +1,12 @@
+[
+  {
+    "sender": "user",
+    "text": "Hi",
+    "timestamp": "14/9/2025, 17:20:17"
+  },
+  {
+    "sender": "bot",
+    "text": "You said: Hi",
+    "timestamp": "14/9/2025, 17:20:17"
+  }
+]

@@ -1,0 +1,60 @@
+[
+  {
+    "id": "chat1",
+    "title": "System Copy Check",
+    "messages": [
+      {
+        "sender": "bot",
+        "text": "Hello! I can help you with SAP BASIS tasks. What do you want to discuss?",
+        "timestamp": "17/09/2025, 10:15:30"
+      },
+      {
+        "sender": "user",
+        "text": "Give me steps for post-system copy activities",
+        "timestamp": "17/09/2025, 10:16:05"
+      },
+      {
+        "sender": "bot",
+        "text": "Sure! Typical post-system copy steps include:\n1. Adjust RFC destinations\n2. Check background jobs\n3. Update logical system names\n4. Run BDLS\n5. Verify licenses",
+        "timestamp": "17/09/2025, 10:16:40"
+      },
+      {
+        "sender": "user",
+        "text": "Hfagla",
+        "timestamp": "19/9/2025, 14:12:56"
+      },
+      {
+        "sender": "bot",
+        "text": "You said: Hfagla",
+        "timestamp": "19/9/2025, 14:12:57"
+      }
+    ]
+  },
+  {
+    "id": "chat3",
+    "title": "Transport Issues",
+    "messages": [
+      {
+        "sender": "user",
+        "text": "Transport is failing in STMS with RC=8",
+        "timestamp": "17/09/2025, 12:20:05"
+      },
+      {
+        "sender": "bot",
+        "text": "RC=8 indicates a warning or error in transport. Check import logs (STMS → Import Overview → Logs). Common causes: object locks, missing cofiles/data files, or authorization issues.",
+        "timestamp": "17/09/2025, 12:20:40"
+      }
+    ]
+  },
+  {
+    "id": "658c7b17-1569-4f0c-babb-98d063c3ce5f",
+    "title": "New Chat",
+    "messages": [
+      {
+        "sender": "bot",
+        "text": "Hello! How can I assist you today?",
+        "timestamp": "19/9/2025, 14:13:08"
+      }
+    ]
+  }
+]
