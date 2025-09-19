@@ -15,7 +15,7 @@ const CHATS_FILE = path.join(__dirname, "chats.json");
 app.use(cors());
 app.use(bodyParser.json());
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 // const mongoURI = process.env.MONGO_URI;
 
 const readChats = () => {
