@@ -13,7 +13,7 @@ const app = express();
 const CHATS_FILE = path.join(__dirname, "chats.json");
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://basis-ai-frontend.onrender.com",
 }));
 app.use(bodyParser.json());
 
