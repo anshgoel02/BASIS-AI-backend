@@ -14,7 +14,16 @@ const CHATS_FILE = path.join(__dirname, "chats.json");
 
 app.use(cors({
   origin: "https://basis-ai-frontend.onrender.com",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
+app.options("*", cors({
+  origin: "https://basis-ai-frontend.onrender.com",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
+
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 10000;
