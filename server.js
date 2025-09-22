@@ -12,7 +12,9 @@ require("dotenv").config();
 const app = express();
 const CHATS_FILE = path.join(__dirname, "chats.json");
 
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+}));
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 10000;
