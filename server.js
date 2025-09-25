@@ -12,10 +12,16 @@ require("dotenv").config();
 const app = express();
 const CHATS_FILE = path.join(__dirname, "chats.json");
 
+// app.use(cors({
+//   origin: "https://basis-ai-frontend.onrender.com",
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// }));
+
 app.use(cors({
-  origin: "https://basis-ai-frontend.onrender.com",
+  origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 // app.options("*", cors({
@@ -27,7 +33,8 @@ app.use(cors({
 // Handle OPTIONS requests globally
 app.use((req, res, next) => {
   if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Origin", "https://basis-ai-frontend.onrender.com");
+    // res.header("Access-Control-Allow-Origin", "https://basis-ai-frontend.onrender.com");
+    res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
     res.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
     return res.sendStatus(204);
