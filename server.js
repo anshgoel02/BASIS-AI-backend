@@ -1,22 +1,12 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const express = require("express");
+const mongoose = require("mongoose");
 const cors = require("cors");
-const bodyParser = require("body-parser");
-const fs = require("fs");
-const path = require("path");
-const { time } = require("console");
-const { v4: uuidv4 } = require("uuid");
-
 require("dotenv").config();
 
-const app = express();
-const CHATS_FILE = path.join(__dirname, "chats.json");
+const chatRoutes = require("./routes/chatRoutes");
 
-// app.use(cors({
-//   origin: "https://basis-ai-frontend.onrender.com",
-//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//   allowedHeaders: ["Content-Type", "Authorization"],
-// }));
+const app = express();
 
 app.use(cors({
   origin: "*",
@@ -24,28 +14,48 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
-// app.options("*", cors({
-//   origin: "https://basis-ai-frontend.onrender.com",
-//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//   allowedHeaders: ["Content-Type", "Authorization"],
-// }));
+app.use(express.json());
+
+// Routes
+app.use("/chats", chatRoutes);
+
+// DB connection
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("✅ Connected to MongoDB Atlas"))
+.catch(err => console.error("❌ MongoDB connection error:", err));
+
+const PORT = process.env.PORT || 10000;
+
+// Should be deleted starting from here
+
+const bodyParser = require("body-parser");
+const { v4: uuidv4 } = require("uuid");
+
+const fs = require("fs");
+const path = require("path");
+// const { time } = require("console");
+
+
+const CHATS_FILE = path.join(__dirname, "chats.json");
+
+
 
 // Handle OPTIONS requests globally
-app.use((req, res, next) => {
-  if (req.method === "OPTIONS") {
-    // res.header("Access-Control-Allow-Origin", "https://basis-ai-frontend.onrender.com");
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
-    res.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
-    return res.sendStatus(204);
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if (req.method === "OPTIONS") {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
+//     res.header("Access-Control-Allow-Headers", "Content-Type,Authorization");
+//     return res.sendStatus(204);
+//   }
+//   next();
+// });
 
 app.use(bodyParser.json());
 
-const PORT = process.env.PORT || 10000;
-// const mongoURI = process.env.MONGO_URI;
 
 const readChats = () => {
   if (!fs.existsSync(CHATS_FILE)) return [];
@@ -178,5 +188,6 @@ app.delete("/chats/:chatId/messages/:msgIndex", (req, res) => {
   res.json({ success: true, chat });
 });
 
+// Should be deleted till here
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
