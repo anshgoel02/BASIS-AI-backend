@@ -1,5 +1,4 @@
 const Chat = require("../models/Chat");
-const { v4: uuidv4 } = require("uuid");
 
 // ✅ Get all chats
 exports.getAllChats = async (req, res) => {
