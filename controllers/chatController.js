@@ -1,4 +1,18 @@
 const Chat = require("../models/Chat");
+const sampleData = require("../seedData");
+
+
+// 🚀 Temporary seed route
+// exports.seedChats = async (req, res) => {
+//   try {
+//     await Chat.deleteMany(); // Clear old docs
+//     const inserted = await Chat.insertMany(sampleData);
+//     res.json({ success: true, insertedCount: inserted.length });
+//   } catch (err) {
+//     console.error("Error seeding database:", err);
+//     res.status(500).json({ error: "Failed to seed database" });
+//   }
+// };
 
 // ✅ Get all chats
 exports.getAllChats = async (req, res) => {
