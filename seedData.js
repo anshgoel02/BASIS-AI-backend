@@ -1,6 +1,52 @@
 module.exports = [
   // ---------------- SIGNAVIO ----------------
   {
+    title: "Signavio Process Insights Service Restoration",
+    appName: "Signavio",
+    messages: [
+      {
+        sender: "bot",
+        text: "Dear customer, the disruption reported previously for SAP Signavio Process Insights has been resolved.",
+        timestamp: "25/09/2025, 10:00:00",
+      },
+      {
+        sender: "user",
+        text: "What caused the disruption?",
+        timestamp: "25/09/2025, 10:01:00",
+      },
+      {
+        sender: "bot",
+        text: "SAP technical teams identified that the issue originated from the raw data receiver component, which was returning an HTTP Server Error 404.",
+        timestamp: "25/09/2025, 10:02:00",
+      },
+      {
+        sender: "user",
+        text: "Was it fixed permanently or just a temporary workaround?",
+        timestamp: "25/09/2025, 10:03:00",
+      },
+      {
+        sender: "bot",
+        text: "The root cause was addressed by correcting the component error and restoring the raw data receiver’s functionality. The fix is permanent.",
+        timestamp: "25/09/2025, 10:04:00",
+      },
+      {
+        sender: "user",
+        text: "Is everything operational now?",
+        timestamp: "25/09/2025, 10:05:00",
+      },
+      {
+        sender: "bot",
+        text: "Yes, all systems are now working as expected. Continuous monitoring is in place to ensure stability.",
+        timestamp: "25/09/2025, 10:06:00",
+      },
+      {
+        sender: "user",
+        text: "Thanks for the quick resolution.",
+        timestamp: "25/09/2025, 10:07:00",
+      },
+    ],
+  },
+  {
     title: "Signavio Planned Maintenance",
     appName: "Signavio",
     messages: [
@@ -101,6 +147,118 @@ module.exports = [
   },
 
   // ---------------- INTEGRATION SUITE ----------------
+  {
+    title: "Service Disruption Due to Unindexed Queries",
+    appName: "Integration Suite",
+    messages: [
+      {
+        sender: "bot",
+        text: "On 23 September 2025, a subset of customers hosted in multiple data centers may have been affected by a service disruption issue impacting the availability of multiple Integration Suite services.",
+        timestamp: "23/09/2025, 08:00:00",
+      },
+      {
+        sender: "user",
+        text: "What was the root cause of this issue?",
+        timestamp: "23/09/2025, 08:01:00",
+      },
+      {
+        sender: "bot",
+        text: "Investigations revealed that long-running unindexed queries in the backend database were causing high CPU usage and increased response times, impacting service availability.",
+        timestamp: "23/09/2025, 08:02:00",
+      },
+      {
+        sender: "user",
+        text: "How was the problem resolved?",
+        timestamp: "23/09/2025, 08:03:00",
+      },
+      {
+        sender: "bot",
+        text: "Technical teams manually created the missing indexes on the affected database fields. Once applied, the services were restored and sanity tests confirmed stable performance.",
+        timestamp: "23/09/2025, 08:04:00",
+      },
+      {
+        sender: "user",
+        text: "Do we know why those queries were missing indexes in the first place?",
+        timestamp: "23/09/2025, 08:05:00",
+      },
+      {
+        sender: "bot",
+        text: "Yes. The issue was triggered by a mass user migration related to Universal ID group changes, which caused a spike in searches using non-indexed fields.",
+        timestamp: "23/09/2025, 08:06:00",
+      },
+      {
+        sender: "user",
+        text: "Were there any other insights from the RCA?",
+        timestamp: "23/09/2025, 08:07:00",
+      },
+      {
+        sender: "bot",
+        text: "Indeed. A recent security update had introduced a query using a non-indexed parameter. Regular load tests didn’t capture this scenario since the migration volume wasn’t simulated at that scale.",
+        timestamp: "23/09/2025, 08:08:00",
+      },
+      {
+        sender: "user",
+        text: "What steps are being taken to prevent this from happening again?",
+        timestamp: "23/09/2025, 08:09:00",
+      },
+      {
+        sender: "bot",
+        text: "SAP has implemented preventive measures: adding the missing indexes, improving load tests for high-volume user operations, and enhancing monitoring for long-running non-indexed queries.",
+        timestamp: "23/09/2025, 08:10:00",
+      },
+      {
+        sender: "user",
+        text: "Good to hear. Please make sure such database checks are more proactive next time.",
+        timestamp: "23/09/2025, 08:11:00",
+      },
+    ],
+  },
+  {
+    title: "Integration Suite Tenant Update Notification",
+    appName: "Integration Suite",
+    messages: [
+      {
+        sender: "bot",
+        text: "This is to inform you that your SAP Integration Suite tenant was successfully updated to the latest software version with zero downtime.",
+        timestamp: "30/09/2025, 07:00:00",
+      },
+      {
+        sender: "user",
+        text: "Nice. What version has it been updated to?",
+        timestamp: "30/09/2025, 07:01:00",
+      },
+      {
+        sender: "bot",
+        text: "Your tenant has been upgraded to Integration Suite version 7.43.2, which includes security and performance enhancements.",
+        timestamp: "30/09/2025, 07:02:00",
+      },
+      {
+        sender: "user",
+        text: "Was there any downtime during this update?",
+        timestamp: "30/09/2025, 07:03:00",
+      },
+      {
+        sender: "bot",
+        text: "No downtime was required — all updates were deployed seamlessly using rolling update mechanisms.",
+        timestamp: "30/09/2025, 07:04:00",
+      },
+      {
+        sender: "user",
+        text: "Can you share which systems were affected by this update?",
+        timestamp: "30/09/2025, 07:05:00",
+      },
+      {
+        sender: "bot",
+        text: "The following tenants were updated as part of this rollout:\n\n• EU10 - is-int-eu10-s4h-cld001\n• US20 - is-int-us20-s4h-prd002\n• AP11 - is-int-ap11-btp003\n• CN40 - is-int-cn40-neo004\n\nAll systems are operational post-update.",
+        timestamp: "30/09/2025, 07:06:00",
+      },
+      {
+        sender: "user",
+        text: "Perfect. Thanks for confirming — good to know everything’s stable.",
+        timestamp: "30/09/2025, 07:07:00",
+      },
+    ],
+  },
   {
     title: "Integration Suite Tenant Maintenance",
     appName: "Integration Suite",
