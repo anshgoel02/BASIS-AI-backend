@@ -12,11 +12,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@microsoft/microsoft-graph-client": "^3.0.7",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "fs": "^0.0.1-security",
+    "isomorphic-fetch": "^3.0.0",
     "mongoose": "^8.18.1",
     "uuid": "^13.0.0"
   },

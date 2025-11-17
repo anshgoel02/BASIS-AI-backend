@@ -5,6 +5,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const chatRoutes = require("./routes/chatRoutes");
+const emailRoutes = require("./routes/emailRoutes");
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 // Routes
 app.use("/chats", chatRoutes);
+app.use("/emails", emailRoutes);
 
 // DB connection
 mongoose.connect(process.env.MONGO_URI, {})
