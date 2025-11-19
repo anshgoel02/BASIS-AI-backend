@@ -24,46 +24,34 @@ async function fetchRecentEmails(userId, accessToken) {
 async function fetchEmailsFromYesterday(userId, accessToken) {
   const client = getGraphClient(accessToken);
 
-  // --------------------------
-  // 1. Calculate yesterday window
-  // --------------------------
+  // Compute date range
   const now = new Date();
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
 
-  const start = new Date(now);
-  start.setDate(start.getDate()-4);
-  start.setHours(0, 0, 0, 0); // 00:00:00
+  const start = yesterday.toISOString();
+  const end = now.toISOString();
 
-  const end = new Date(now);
-  end.setDate(end.getDate());
-  end.setHours(23, 59, 59, 999); // 23:59:59
+  const filter = `receivedDateTime ge ${start} and receivedDateTime lt ${end}`;
 
-  const startIso = start.toISOString();
-  const endIso = end.toISOString();
+  let url = `/users/${userId}/messages?$select=subject,from,bodyPreview,receivedDateTime&$filter=${encodeURIComponent(filter)}&$orderby=receivedDateTime desc&$top=50`;
 
-  // --------------------------
-  // 2. Fetch yesterday’s emails
-  // --------------------------
-  const response = await client
-    .api(`/users/${userId}/messages`)
-    .filter(
-      `receivedDateTime ge ${startIso} and receivedDateTime le ${endIso}`
-    )
-    .select("subject,from,bodyPreview,receivedDateTime")
-    .orderby("receivedDateTime DESC")
-    .get();
+  let allEmails = [];
 
-  const mails = response.value;
+  while (url) {
+    const response = await client.api(url).get();
 
-  // --------------------------
-  // 3. Filter by specific sender (locally)
-  // --------------------------
-  // const filtered = mails.filter(
-  //   (mail) =>
-  //     mail.from?.emailAddress?.address?.toLowerCase() ===
-  //     "barath.kakaday@mccain.com"
-  // );
+    if (response.value) {
+      allEmails.push(...response.value);
+    }
 
-  return mails;
+    // Pagination
+    url = response["@odata.nextLink"]
+      ? response["@odata.nextLink"].replace("https://graph.microsoft.com/v1.0", "")
+      : null;
+  }
+
+  return allEmails;
 }
 
 
