@@ -21,7 +21,7 @@ async function fetchRecentEmails(userId, accessToken) {
 }
 
 
-async function fetchEmailsFromYesterday(userId, accessToken) {
+async function fetchEmailsFromYesterday(userId, accessToken, senderEmail = null) {
   const client = getGraphClient(accessToken);
 
   // Compute date range
@@ -49,6 +49,15 @@ async function fetchEmailsFromYesterday(userId, accessToken) {
     url = response["@odata.nextLink"]
       ? response["@odata.nextLink"].replace("https://graph.microsoft.com/v1.0", "")
       : null;
+  }
+
+  // 🔥 Filter by sender in backend (lowercase match)
+  if (senderEmail) {
+    allEmails = allEmails.filter(
+      (msg) =>
+        msg.from?.emailAddress?.address?.toLowerCase() ===
+        senderEmail.toLowerCase()
+    );
   }
 
   return allEmails;

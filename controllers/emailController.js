@@ -34,7 +34,7 @@ exports.fetchAndStoreEmails = async (req, res) => {
 
 exports.getYesterdayEmails = async (req, res) => {
   try {
-    const { userId, accessToken } = req.body;
+    const { userId, accessToken, senderEmail } = req.body;
 
     if (!userId || !accessToken) {
       return res.status(400).json({
@@ -42,7 +42,7 @@ exports.getYesterdayEmails = async (req, res) => {
       });
     }
 
-    const emails = await fetchEmailsFromYesterday(userId, accessToken);
+    const emails = await fetchEmailsFromYesterday(userId, accessToken, senderEmail);
 
     res.json({
       success: true,
